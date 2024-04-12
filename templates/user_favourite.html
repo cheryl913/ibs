@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Favourite Accounts - Internet Banking System</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+
+    <!-- Favicons -->
+    <link href="{{url_for('static', filename='img/favicon.png')}}" rel="icon">
+    <link href="{{url_for('static', filename='img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{{url_for('static', filename='vendor/aos/aos.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+
+
+    <!-- =======================================================
+    * Template Name: Gp
+    * Updated: Mar 10 2023 with Bootstrap v5.2.3
+    * Template URL: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+    <header id="user_header" class="fixed-top ">
+        <div class="container d-flex align-items-center justify-content-lg-between">
+
+            <h1 class="logo me-auto me-lg-0"><a href="user_home.html">IBS<span>.</span></a></h1>
+
+            <nav id="navbar" class="navbar order-first order-lg-0">
+                <ul>
+                  <li><a class="nav-link scrollto {% if active == 'user_home' %}active{% endif %}" href="{{url_for('user_home')}}">Account</a></li>
+                    <li><a class="nav-link scrollto {% if active == 'user_transaction' %}active{% endif %}" href="{{url_for('user_transaction')}}">Transaction</a></li>
+                    <li><a class="nav-link scrollto {% if active == 'user_device' %}active{% endif %}" href="{{url_for('user_device')}}">Device</a></li>
+                    <li><a class="nav-link scrollto {% if active == 'user_changepassword' %}active{% endif %}" href="{{url_for('user_changepassword')}}">Change Password</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav>
+            <p>Hi, {{username}} </p>
+            <a href="{{ url_for('logout') }}" class="get-started-btn">Logout</a>
+        </div>
+    </header><!-- End Header -->
+
+  
+   <section id="favoacc" class="d-flex align-items-center justify-content-center">
+      <div class="container" data-aos="fade-up">
+        <br>
+          <div class="section-title">
+              <p>Internet Banking System</p>
+              <h2>Manage Favourite Account</h2>
+          </div>
+
+          <div class="newButton">
+            <button id="addNew" type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#addFavourite">
+              Add New
+            </button>
+          </div>
+
+          <table>
+            <colgroup>
+              <col span="1" style="width: 10%;">
+              <col span="1" style="width: 20%;">
+              <col span="1" style="width: 30%;">
+              <col span="1" style="width: 20%;">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Beneficiary Nickname</th>
+                    <th>Beneficiary Name</th>
+                    <th>Beneficiary Account</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for record in favoacc %} 
+              <tr>
+                <td> 
+                  <button class="btn btn-default btn-xs" onclick="toggleForm({{ record[2] }})">
+                    <i class="fa fa-pencil-square-o"></i>
+                  </button>
+                  <form id="deleteForm" method="POST" action="{{ url_for('user_deletefavourite') }}">
+                    <input type="hidden" name="accid" value="{{ record[2] }}">
+                    
+                    <button class="btn btn-default btn-xs" type="submit">
+                      <i class="fa fa-trash-o"></i>
+                    </button>
+                  </form>
+                </td>
+                <td>{{ record[3] }}</td>
+                <td>{{ record[0] }} {{ record[1] }}</td>
+                <td>{{ record[2] }}</td>
+              </tr>
+              <tr id="form-{{ record[2] }}" class="form-container" style="display: none">
+                <td colspan="4" style="text-align: center;">
+                  <div>
+                    <form action=" {{ url_for('update_favourite') }} " method="post">
+                      <input type="hidden" name="accid" value="{{ record[2] }}">
+                      <input type="text" placeholder="New Nickname" name="new_nickname" id="new_nickname"><br>
+                      <input type="submit" name="btnSubmit" id="btnSubmit">
+                    </form>
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+      </div>
+   </section>
+
+   
+
+   <!-- Modal -->
+  <div class="modal fade" id="addFavourite" tabindex="-1" role="dialog" aria-labelledby="addFavouriteLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addTitle">Add a New Favourite Account</h5>
+        </div>
+        <div class="modal-body">
+          <form class="favo_form" id="favo_form" action="{{ url_for('user_addfavourite') }}" method="post">
+            <div class="form-group">
+              <label for="favoname">Nickname:</label>
+              <input type="text" id="favoname" name="favoname" required>
+            </div>
+            <div class="form-group">
+                <label for="accno">Account Number:</label>
+                <input type="text" id="accno" name="accno" required>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-warning">Add</button>          
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <script>
+
+    var expandedRowId = null;
+
+    function toggleForm(recordId) {
+      var formRow = document.getElementById('form-' + recordId);
+      var formCell = formRow.getElementsByTagName('td')[0];
+  
+      if (expandedRowId === recordId) {
+        // Collapse the clicked row
+        formRow.style.display = "none";
+        formCell.setAttribute("colspan", "");
+        formCell.style.textAlign = "";
+        expandedRowId = null;
+      } else {
+        // Collapse the previously expanded row, if any
+        if (expandedRowId !== null) {
+          var expandedRow = document.getElementById('form-' + expandedRowId);
+          var expandedCell = expandedRow.getElementsByTagName('td')[0];
+          expandedRow.style.display = "none";
+          expandedCell.setAttribute("colspan", "");
+          expandedCell.style.textAlign = "";
+        }
+  
+        // Expand the clicked row
+        formRow.style.display = "table-row";
+        formCell.setAttribute("colspan", "4");
+        formCell.style.textAlign = "center";
+        expandedRowId = recordId;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.getElementById('addNew').addEventListener('click', function() {
+          $('#addFavourite').modal('show');
+      });
+    });
+
+    $('#addFavourite').on('shown.bs.modal', function () {
+      $('#favoname').trigger('focus');
+    });
+   </script>
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 justify-content-center">
+            <div class="footer-info">
+                <h3>IBS<span>.</span></h3>
+                <p>
+                    Asia Pacific University <br>
+                    KL 57000, Malaysia<br><br>
+                    <strong>Phone:</strong> +60 12-758 0309<br>
+                    <strong>Email:</strong> tp056072@mail.apu.edu.com<br>
+                </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+          &copy; Copyright <strong><span>IBS</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{{url_for('static', filename='vendor/purecounter/purecounter_vanilla.js')}}"></script>
+  <script src="{{url_for('static', filename='vendor/aos/aos.js')}}"></script>
+  <script src="{{url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{url_for('static', filename='vendor/glightbox/js/glightbox.min.js')}}"></script>
+  <script src="{{url_for('static', filename='vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+  <script src="{{url_for('static', filename='vendor/swiper/swiper-bundle.min.js')}}"></script>
+  <script src="{{url_for('static', filename='vendor/php-email-form/validate.js')}}"></script>
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{{url_for('static', filename='js/main.js')}}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>TAC - Internet Banking System</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="{{url_for('static', filename='img/favicon.png')}}" rel="icon">
+    <link href="{{url_for('static', filename='img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{{url_for('static', filename='vendor/aos/aos.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: Gp
+    * Updated: Mar 10 2023 with Bootstrap v5.2.3
+    * Template URL: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+    <header id="user_header" class="fixed-top ">
+        <div class="container d-flex align-items-center justify-content-lg-between">
+
+            <h1 class="logo me-auto me-lg-0"><a href="user_home.html">IBS<span>.</span></a></h1>
+
+            <nav id="navbar" class="navbar order-first order-lg-0">
+                <ul>
+                    <li><a class="nav-link scrollto {% if active == 'user_home' %}active{% endif %}" href="{{url_for('user_home')}}">Account</a></li>
+                    <li><a class="nav-link scrollto {% if active == 'user_transaction' %}active{% endif %}" href="{{url_for('user_transaction')}}">Transaction</a></li>
+                    <li><a class="nav-link scrollto {% if active == 'user_device' %}active{% endif %}" href="{{url_for('user_device')}}">Device</a></li>
+                    <li><a class="nav-link scrollto {% if active == 'user_changepassword' %}active{% endif %}" href="{{url_for('user_changepassword')}}">Change Password</a></li>
+                  </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav>
+            <p>Hi, {{username}}</p>
+            <a href="{{ url_for('logout') }}" class="get-started-btn">Logout</a>
+        </div>
+    </header><!-- End Header -->
+
+    <section id="transfer" class="transfer">
+        <div class="container" data-aos="fade-up">
+            <br>
+            <div class="section-title">
+                <p>Internet Banking System</p>
+                <h2>Transfer</h2>
+            </div>
+            <div class="transfer-form">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        {% for message in messages %}  
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                        </button>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                {% endwith %}
+                <form id="transfer" action="{{url_for('user_checktac')}}" method="post">
+                    <div class="form-group">
+                        <label for="from">From Account:</label>
+                        <label for="from_account">{{ from_account }}</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="accno">Beneficiary Account:</label>
+                        <label for="account_number">{{ to_account_no }}</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="accno">Beneficiary Name:</label>
+                        <label for="account_number">{{ to_account_name }}</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="accno">Amount:</label>
+                        <label for="account_number">{{ amount }}</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="reference">Receipient Reference:</label>
+                        <label for="account_number">{{ reference }}</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="tac">TAC:</label>
+                        <input type="text" id="tac" name="tac" {% if session['tac'] %} value="{{ tac }}" {% endif %} readonly>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Transfer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="keypad" id="keypad">
+            <div class="keys">
+                <div class="row">
+                    <button class="key">1</button>
+                    <button class="key">2</button>
+                    <button class="key">3</button>
+                </div>
+                <div class="row">
+                    <button class="key">4</button>
+                    <button class="key">5</button>
+                    <button class="key">6</button>
+                </div>
+                <div class="row">
+                    <button class="key">7</button>
+                    <button class="key">8</button>
+                    <button class="key">9</button>
+                </div>
+                <div class="row">
+                    <button class="delete" id="delete">&times;</button>
+                    <button class="key">0</button>
+                    <button class="ok" id="ok">&#10003;</button>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    {% if show_alert %}
+    <script>
+        window.onload = function() {
+            alert("TAC is incorrect! A new TAC has been sent to your number.")
+        }
+    </script>
+    {% endif %}
+
+    
+    <script>
+        // Show keypad when input field is clicked
+        document.getElementById("tac").addEventListener("click", function() {
+            document.getElementById("keypad").style.display = "block";
+        });
+        
+        // Handle keypad button clicks
+        var buttons = document.getElementsByClassName("key");
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener("click", function() {
+            var value = this.innerHTML;
+            document.getElementById("tac").value += value;
+            });
+        };
+        
+        // Handle Delete button click
+        var deleteButton = document.getElementById('delete');
+
+        // Add click event listener to the delete button
+        deleteButton.addEventListener('click', function() {
+        // Get the input field
+        var inputField = document.getElementById('tac');
+        
+        // Remove the last character from the input value
+        var currentValue = inputField.value;
+        inputField.value = currentValue.slice(0, -1);
+        });
+        
+        // Handle OK button click
+        var okButton = document.getElementById('ok');
+        okButton.addEventListener('click', function() {
+            document.getElementById("keypad").style.display = "none";
+        });
+    </script>
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 justify-content-center">
+                        <div class="footer-info">
+                            <h3>IBS<span>.</span></h3>
+                            <p>
+                                Asia Pacific University <br>
+                                KL 57000, Malaysia<br><br>
+                                <strong>Phone:</strong> +60 12-758 0309<br>
+                                <strong>Email:</strong> tp056072@mail.apu.edu.com<br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong><span>IBS</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="{{url_for('static', filename='vendor/purecounter/purecounter_vanilla.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/aos/aos.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/glightbox/js/glightbox.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/swiper/swiper-bundle.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/php-email-form/validate.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Create User - Internet Banking System</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="{{url_for('static', filename='img/favicon.png')}}" rel="icon">
+    <link href="{{url_for('static', filename='img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{{url_for('static', filename='vendor/aos/aos.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: Gp
+    * Updated: Mar 10 2023 with Bootstrap v5.2.3
+    * Template URL: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body>
+    <header id="user_header" class="fixed-top ">
+        <div class="container d-flex align-items-center justify-content-lg-between">
+
+            <h1 class="logo me-auto me-lg-0"><a href="user_home.html">IBS<span>.</span></a></h1>
+
+            <nav id="navbar" class="navbar order-first order-lg-0">
+                <ul>
+                  <li><a class="nav-link scrollto {% if active == 'admin_home' %}active{% endif %}" href="{{url_for('admin_home')}}">Home</a></li>
+                    <li><a class="nav-link scrollto {% if active == 'admin_register' %}active{% endif %}" href="{{url_for('admin_register')}}">Register</a></li>
+                    <li><a class="nav-link scrollto {% if active == 'admin_fraud' %}active{% endif %}" href="{{url_for('admin_fraud')}}">Fraud</a></li>
+                    <li><a class="nav-link scrollto {% if active == 'admin_checkuser' %}active{% endif %}" href="{{url_for('admin_checkuser')}}">Users</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav>
+            <p>Hi, {{username}}</p>
+            <a href="{{ url_for('logout') }}" class="get-started-btn">Logout</a>
+        </div>
+    </header><!-- End Header -->
+
+    <section id="admin_create" class="admin_create">
+        <div class="container" data-aos="fade-up">
+            <br>
+            <div class="section-title">
+                <h2>Create a User Account</h2>
+            </div>
+
+            <div class="user-form">
+                <form id="createUser" action="{{url_for('admin_create_user')}}" method="post">
+                    <div class="form-group">
+                        <label for="fname">First Name:</label>
+                        <input type="text" id="fname" name="fname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lname">Last Name:</label>
+                        <input type="text" id="lname" name="lname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender:</label>
+                        <input type="text" id="gender" name="gender" maxlength="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">Date of Birth:</label>
+                        <input type="date" id="dob" name="dob" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="street">Street:</label>
+                        <input type="text" id="street" name="street" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City:</label>
+                        <input type="text" id="city" name="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State:</label>
+                        <input type="text" id="state" name="state" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="postcode">Postcode:</label>
+                        <input type="text" id="postcode" name="postcode" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Country:</label>
+                        <input type="text" id="country" name="country" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneno">Phone Number:</label>
+                        <input type="text" id="phoneno" name="phoneno" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Create User</button>
+                    </div>
+                </form>
+
+        </div>
+    </section>
+
+    <script>
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        
+        today = yyyy + '-' + mm + '-' + dd;
+        document.getElementById("dob").max = today;
+
+        document.getElementById('postcode').addEventListener('input', function (e) {
+            e.target.value = e.target.value.replace(/[^0-9]/g, '');
+            if(e.target.value.length > 5) {
+                e.target.value = e.target.value.slice(0, 5);
+            }
+        });
+
+        document.getElementById('gender').addEventListener('input', function (e) {
+            e.target.value = e.target.value.toUpperCase().replace(/[^FM]/g, '');
+        });
+        </script>
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 justify-content-center">
+                        <div class="footer-info">
+                            <h3>IBS<span>.</span></h3>
+                            <p>
+                                Asia Pacific University <br>
+                                KL 57000, Malaysia<br><br>
+                                <strong>Phone:</strong> +60 12-758 0309<br>
+                                <strong>Email:</strong> tp056072@mail.apu.edu.com<br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong><span>IBS</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+        <script src="{{url_for('static', filename='vendor/purecounter/purecounter_vanilla.js')}}"></script>
+        <script src="{{url_for('static', filename='vendor/aos/aos.js')}}"></script>
+        <script src="{{url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{url_for('static', filename='vendor/glightbox/js/glightbox.min.js')}}"></script>
+        <script src="{{url_for('static', filename='vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+        <script src="{{url_for('static', filename='vendor/swiper/swiper-bundle.min.js')}}"></script>
+        <script src="{{url_for('static', filename='vendor/php-email-form/validate.js')}}"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <!-- Template Main JS File -->
+        <script src="{{url_for('static', filename='js/main.js')}}"></script>
+
+</body>
+
+</html>

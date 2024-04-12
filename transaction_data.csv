@@ -1,0 +1,63 @@
+Transaction ID,Transaction Amount,Transaction Date,Transaction Type,Customer ID,Merchant,Location,Transaction Status,Fraud Label
+1,1972.23,2019-04-19 01:10:00,Online Transfer,5,IBS,"Muar, Malaysia",Successful,0
+2,1518.87,2019-04-20 07:39:00,Online Transfer,38,IBS,"Pekan, Malaysia",Successful,0
+3,518.15,2019-04-21 15:29:00,Online Transfer,45,IBS,"Kaki Bukit, Malaysia",Successful,0
+4,3406.41,2019-05-18 10:57:00,Online Transfer,69,IBS,"Kota Tiinggi, Malayisa",Successful,0
+5,1902.29,2019-05-24 21:05:00,Online Transfer,11,IBS,"Bentong, Malaysia",Successful,0
+6,920.91,2019-06-04 04:53:00,Online Transfer,92,IBS,"Kuching, Malaysia",Successful,0
+7,647.69,2019-08-24 21:03:00,Online Transfer,95,IBS,"Kulai, Malaysia",Successful,0
+8,1661.58,2019-09-07 08:23:00,Online Transfer,59,IBS,"Alor Setar, Malaysia",Successful,0
+9,1597.92,2019-09-13 08:49:00,Online Transfer,84,IBS,"Kuantan, Malaysia",Successful,0
+10,4606.32,2019-10-05 18:36:00,Online Transfer,38,IBS,"Tawau, Malaysia",Successful,0
+11,1487.51,2019-10-16 01:26:00,Online Transfer,12,IBS,"Kuching, Malaysia",Successful,0
+12,1202.81,2019-11-10 14:31:00,Online Transfer,93,IBS,"Kangar, Malaysia",Successful,0
+13,4926.82,2019-12-15 03:26:00,Online Transfer,87,IBS,"Johor Bahru, Malaysia",Successful,1
+14,2993.8,2020-01-13 07:08:00,Online Transfer,15,IBS,"Alor Setar, Malaysia",Successful,0
+15,1278.38,2020-02-09 21:01:00,Online Transfer,87,IBS,"Ipoh, Malaysia",Successful,0
+16,4314.48,2020-02-21 15:25:00,Online Transfer,57,IBS,Negeri Sembilan,Successful,0
+17,2845.14,2020-03-23 12:20:00,Online Transfer,10,IBS,"Kota Bahru, Malaysia",Successful,0
+18,1693.45,2020-03-25 20:26:00,Online Transfer,19,IBS,"Kangar, Malaysia",Successful,0
+19,2965.85,2020-05-15 04:52:00,Online Transfer,51,IBS,"Kuala Terengganu, Malaysia",Successful,0
+20,1923.87,2020-06-08 15:43:00,Online Transfer,32,IBS,"Kota Kinabalu, Malaysia",Successful,0
+21,2758.68,2020-06-29 09:48:00,Online Transfer,65,IBS,"Kuala Lumpur, Malaysia",Successful,0
+22,2675.16,2020-08-20 04:32:00,Online Transfer,48,IBS,"Kuantan, Malaysia",Successful,0
+23,2077.12,2020-08-24 14:54:00,Online Transfer,58,IBS,"Butterworth, Malaysia",Successful,0
+24,756.09,2020-09-14 01:36:00,Online Transfer,92,IBS,"Kuching, Malaysia",Successful,0
+25,2093.83,2020-09-21 00:20:00,Online Transfer,42,IBS,"Kuala Perlis, Malaysia",Successful,0
+26,4010.01,2020-09-27 13:55:00,Online Transfer,64,IBS,"Kangar, Malaysia",Successful,0
+27,3974.01,2020-09-27 14:34:00,Online Transfer,85,IBS,Negeri Sembilan,Successful,0
+28,633.16,2020-10-14 03:51:00,Online Transfer,60,IBS,"Kota Bahru, Malaysia",Successful,0
+29,3371.44,2020-10-27 11:39:00,Online Transfer,9,IBS,"Kota Kinabalu, Malaysia",Successful,1
+30,4884.89,2020-11-20 19:25:00,Online Transfer,58,IBS,"Kuala Lumpur, Malaysia",Successful,0
+31,2298.87,2020-12-04 05:12:00,Online Transfer,44,IBS,"George Town, Malaysia",Successful,0
+32,4410.63,2020-12-04 21:50:00,Online Transfer,48,IBS,"Kota Bahru, Malaysia",Successful,0
+33,516.25,2020-12-24 19:10:00,Online Transfer,50,IBS,"Kampar, Malaysia",Successful,0
+34,1447.21,2021-01-01 20:06:00,Online Transfer,4,IBS,"Kuala Lumpur, Malaysia",Successful,0
+35,3066.71,2021-01-14 16:31:00,Online Transfer,74,IBS,"Sungai Petani, Malaysia",Successful,0
+36,4759.23,2021-02-14 15:46:00,Online Transfer,24,IBS,"Shah Alam, Malaysia",Successful,0
+37,860.26,2021-03-16 15:26:00,Online Transfer,84,IBS,"Ipoh, Malaysia",Successful,0
+38,3537.55,2021-03-21 23:21:00,Online Transfer,72,IBS,"Semporna, Malaysia",Successful,0
+39,2973.93,2021-04-25 01:40:00,Online Transfer,72,IBS,"Miri, Malaysia",Successful,0
+40,3381.64,2021-06-09 22:13:00,Online Transfer,73,IBS,"Kuala Lumpur, Malaysia",Successful,0
+41,163.4,2021-07-26 00:24:00,Online Transfer,96,IBS,"George Town, Malaysia",Successful,0
+42,1462.08,2021-07-29 11:07:00,Online Transfer,27,IBS,"Kuala Terengganu, Malaysia",Successful,1
+43,716.76,2021-08-14 19:35:00,Online Transfer,38,IBS,"George Town, Malaysia",Successful,0
+44,4150.91,2021-10-03 06:17:00,Online Transfer,60,IBS,"Johor Bahru, Malaysia",Successful,0
+45,2713.15,2021-10-07 19:45:00,Online Transfer,77,IBS,"Bintulu, Malaysia",Successful,0
+46,655.32,2021-11-19 05:50:00,Online Transfer,18,IBS,"Kuala Terengganu, Malaysia",Successful,0
+47,1392.27,2021-12-15 20:34:00,Online Transfer,67,IBS,"Kuala Lumpur, Malaysia",Successful,0
+48,1317.64,2022-01-12 12:58:00,Online Transfer,72,IBS,"Kuala Perlis, Malaysia",Successful,0
+49,957.08,2022-01-18 03:56:00,Online Transfer,77,IBS,"Kuala Lumpur, Malaysia",Successful,0
+50,4058.14,2022-02-05 06:33:00,Online Transfer,86,IBS,"Kuala Selangor, Malaysia",Successful,0
+51,11.0,2023-07-14 03:27:09,Online Transfer,1,IBS,"Kuala Lumpur, Malaysia",Successful,0
+52,5.0,2023-07-16 23:24:38,Online Transfer,1,IBS,"Kuala Lumpur, Malaysia",Successful,0
+53,2.0,2023-07-16 23:23:20,Online Transfer,1,IBS,"Kuala Lumpur, Malaysia",Successful,0
+54,32.0,2023-07-16 23:12:02,Online Transfer,1,IBS,"Kuala Lumpur, Malaysia",Successful,0
+55,11.0,2023-07-16 23:10:12,Online Transfer,1,IBS,"Kuala Lumpur, Malaysia",Successful,0
+56,5.0,2023-07-16 22:40:13,Online Transfer,1,IBS,"Kuala Lumpur, Malaysia",Successful,0
+57,12.0,2023-07-16 22:26:46,Online Transfer,1,IBS,"Kuala Lumpur, Malaysia",Successful,0
+58,23.0,2023-07-16 22:21:11,Online Transfer,1,IBS,"Kuala Lumpur, Malaysia",Successful,0
+59,11.0,2023-07-14 03:27:09,Online Transfer,1,IBS,"Kuala Lumpur, Malaysia",Successful,0
+60,12.0,2023-07-25 00:10:59,Online Transfer,7,IBS,"Kuala Lumpur, Malaysia",Successful,0
+61,10.0,2023-08-09 22:50:48,Online Transfer,8,IBS,"Alor Setar, Malaysia",Successful,0
+62,2000.00,2023-08-10 10:27:42,Online Transfer,9,IBS,"Alor Setar, Malaysia",Successful,0

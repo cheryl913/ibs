@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Saved Device - Internet Banking System</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+
+    <!-- Favicons -->
+    <link href="{{url_for('static', filename='img/favicon.png')}}" rel="icon">
+    <link href="{{url_for('static', filename='img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{{url_for('static', filename='vendor/aos/aos.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: Gp
+    * Updated: Mar 10 2023 with Bootstrap v5.2.3
+    * Template URL: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+    <header id="user_header" class="fixed-top ">
+        <div class="container d-flex align-items-center justify-content-lg-between">
+
+            <h1 class="logo me-auto me-lg-0"><a href="user_home.html">IBS<span>.</span></a></h1>
+
+            <nav id="navbar" class="navbar order-first order-lg-0">
+                <ul>
+                  <li><a class="nav-link scrollto {% if active == 'user_home' %}active{% endif %}" href="{{url_for('user_home')}}">Account</a></li>
+                    <li><a class="nav-link scrollto {% if active == 'user_transaction' %}active{% endif %}" href="{{url_for('user_transaction')}}">Transaction</a></li>
+                    <li><a class="nav-link scrollto {% if active == 'user_device' %}active{% endif %}" href="{{url_for('user_device')}}">Device</a></li>
+                    <li><a class="nav-link scrollto {% if active == 'user_changepassword' %}active{% endif %}" href="{{url_for('user_changepassword')}}">Change Password</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav>
+            <p>Hi, {{ username }}</p>
+            <a href="{{ url_for('logout') }}" class="get-started-btn">Logout</a>
+        </div>
+    </header><!-- End Header -->
+
+    <section id="device" class="d-flex align-items-center justify-content-center">
+      <div class="container" data-aos="fade-up">
+        <br>
+        <div class="section-title">
+          <p>Internet Banking System</p>
+          <h2>My Device</h2>
+        </div>
+        
+        <div class="device">
+            <label for="device_model">Device Model:</label><br>
+            <input type="text" id="device_model" name="device_model" value="{{devicename}}" readonly>
+            <br>
+            <input type="button" id="change" name="change" value="Change Device" data-toggle="modal" data-target="#insert2FA">
+        </div>
+           
+      </div>
+
+        <!-- Modal -->
+      <div class="modal fade" id="insert2FA" tabindex="-1" role="dialog" aria-labelledby="insert2FAlabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="tfaTitle">Enter Two-Factor Authentication</h5>
+            </div>
+            <div class="modal-body">
+              <form class="tfa_form" id="tfa_form" action="{{ url_for('user_device') }}" method="post">
+                <div class="form-group">
+                  <label for="tfa">Two-factor Authentication:</label>
+                  <input type="password" id="tfa" name="tfa" readonly>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-warning">Done</button>
+            </div>
+              </form>
+          </div>
+        </div>
+
+        <div class="keypad" id="keypad">
+          <div class="keys">
+              <div class="row">
+                  <button class="key">1</button>
+                  <button class="key">2</button>
+                  <button class="key">3</button>
+              </div>
+              <div class="row">
+                  <button class="key">4</button>
+                  <button class="key">5</button>
+                  <button class="key">6</button>
+              </div>
+              <div class="row">
+                  <button class="key">7</button>
+                  <button class="key">8</button>
+                  <button class="key">9</button>
+              </div>
+              <div class="row">
+                  <button class="delete" id="delete">&times;</button>
+                  <button class="key">0</button>
+                  <button class="ok" id="ok">&#10003;</button>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      
+    </section>
+
+  
+
+  <script>
+    document.getElementById("tfa").addEventListener("click", function() {
+      document.getElementById("keypad").style.display = "block";
+    });
+
+    // Handle keypad button clicks
+    var buttons = document.getElementsByClassName("key");
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener("click", function() {
+        var value = this.innerHTML;
+        document.getElementById("tfa").value += value;
+        });
+    };
+    
+    // Handle Delete button click
+    var deleteButton = document.getElementById('delete');
+
+    // Add click event listener to the delete button
+    deleteButton.addEventListener('click', function() {
+    // Get the input field
+    var inputField = document.getElementById('tfa');
+    
+    // Remove the last character from the input value
+    var currentValue = inputField.value;
+    inputField.value = currentValue.slice(0, -1);
+    });
+    
+    // Handle OK button click
+    var okButton = document.getElementById('ok');
+    okButton.addEventListener('click', function() {
+        document.getElementById("keypad").style.display = "none";
+    });
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.getElementById('change').addEventListener('click', function() {
+          $('#insert2FA').modal('show');
+      });
+    });
+
+    $('#insert2FA').on('shown.bs.modal', function () {
+      $('#tfa').trigger('focus');
+    });
+  </script>
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 justify-content-center">
+            <div class="footer-info">
+                <h3>IBS<span>.</span></h3>
+                <p>
+                    Asia Pacific University <br>
+                    KL 57000, Malaysia<br><br>
+                    <strong>Phone:</strong> +60 12-758 0309<br>
+                    <strong>Email:</strong> tp056072@mail.apu.edu.com<br>
+                </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+          &copy; Copyright <strong><span>IBS</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{{url_for('static', filename='vendor/purecounter/purecounter_vanilla.js')}}"></script>
+  <script src="{{url_for('static', filename='vendor/aos/aos.js')}}"></script>
+  <script src="{{url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{url_for('static', filename='vendor/glightbox/js/glightbox.min.js')}}"></script>
+  <script src="{{url_for('static', filename='vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+  <script src="{{url_for('static', filename='vendor/swiper/swiper-bundle.min.js')}}"></script>
+  <script src="{{url_for('static', filename='vendor/php-email-form/validate.js')}}"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{{url_for('static', filename='js/main.js')}}"></script>
+
+</body>
+
+</html>
