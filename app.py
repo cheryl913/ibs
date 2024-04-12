@@ -16,6 +16,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 from flask_mysqldb import MySQL
 from config import MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DB, SECRET_KEY
+from twilio import ACCOUNT_SID, AUTH_TOKEN
 
 app = Flask(__name__)
  
@@ -39,9 +40,9 @@ app.config['SESSION_COOKIE_SECURE'] = True
 Session(app)
 
 # Twilio
-account_sid = 'ACf9d169fa091c2dd4a9d6ee8ba78a2ea7'
-auth_token = '1d4cd04f2db68cdb36623f357b96fe51'
-client = Client(account_sid, auth_token)
+app.twilio['ACCOUNT_SID'] = ACCOUNT_SID
+app.twilio['AUTH_TOKEN'] = AUTH_TOKEN
+client = Client(ACCOUNT_SID, ACCOUNT_SID)
 
 # Configure logging to a file
 logging.basicConfig(filename='server.log', level=logging.DEBUG)
